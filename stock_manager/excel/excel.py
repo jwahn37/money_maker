@@ -9,13 +9,12 @@ class Excel:
         self.wb = xw.Book(filePath)
         self.sheet = self.wb.sheets[sheetName]
         
-    def getStockPrice(self, nameCol, priceCol):
-        # self.dataFrame = sheet['A1:M41'].options(pd.DataFrame, index=False, header=True).value
-        for i in range(2, 41):
-            # self.sheet.range(priceCol+str(i)).value = self.stock.getPrice(self.sheet.range(nameCol+str(i)).value)
-            price = self.stock.getPrice(self.sheet.range(nameCol+str(i)).value)
-            if price != "":
-                self.sheet.range(priceCol+str(i)).value = price
+    def getStockPrice(self, nameRange, priceRange):
+        nameRange = self.sheet.range(nameRange)
+        priceRange = self.sheet.range(priceRange)
+        
+        for priceRow, nameRow in zip(priceRange.rows, nameRange.rows):
+            priceRow.value = self.stock.getPrice(nameRow.value)
 
     def getUSD(self, addr):
         self.sheet.range(addr).value = self.stock.getUSD()
