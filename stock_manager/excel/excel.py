@@ -14,7 +14,9 @@ class Excel:
         priceRange = self.sheet.range(priceRange)
         
         for priceRow, nameRow in zip(priceRange.rows, nameRange.rows):
-            priceRow.value = self.stock.getPrice(nameRow.value)
+            price = self.stock.getPrice(nameRow.value)
+            if price != "":
+                priceRow.value = price
 
     def getUSD(self, addr):
         self.sheet.range(addr).value = self.stock.getUSD()
