@@ -1,3 +1,4 @@
+
 USD_URL = 'https://api.stock.naver.com/marketindex/exchange/FX_USDKRW'
 COIN_URL = 'https://api.upbit.com/v1/market/all'
 METAL_URL = 'https://api.stock.naver.com/marketindex/metals'

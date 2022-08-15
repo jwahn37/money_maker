@@ -21,6 +21,7 @@ class Stock:
             if response.status_code == status_ok:
                 resTxt = response.text
                 resJson = json.loads(resTxt)
+                print(resJson)
                 stocks = resJson["searchStocks"]
                 for stock in stocks:
                     if stock["stockName"]==name:
@@ -78,7 +79,7 @@ class Stock:
         price = self.getFundPrice(name)
         if price != "":
             return price
-        price = self.getTempData(name)
+        # price = self.getTempData(name)
         return price
 
     def getStockPrice(self, name):
@@ -165,20 +166,20 @@ class Stock:
         fundData["fundName2"] = name
         return fundData
 
-    def getTempData(self, name):
-        # Get Anchor protocol price
-        if(name != "앵커프로토콜"):
-            return ""
+    # def getTempData(self, name):
+    #     # Get Anchor protocol price
+    #     if(name != "앵커프로토콜"):
+    #         return ""
 
-        try:
-            URL = 'https://api.anchorprotocol.com/api/v1/anc'
-            response = requests.get(URL)
-            if response.status_code == status_ok:
-                resTxt = response.text
-                resJson = json.loads(resTxt)
-                price = resJson['anc_price']
-                print(price)
-                return price
-        except:
-            return ""
-        return ""        
+    #     try:
+    #         URL = 'https://api.anchorprotocol.com/api/v1/anc'
+    #         response = requests.get(URL)
+    #         if response.status_code == status_ok:
+    #             resTxt = response.text
+    #             resJson = json.loads(resTxt)
+    #             price = resJson['anc_price']
+    #             print(price)
+    #             return price
+    #     except:
+    #         return ""
+    #     return ""        
